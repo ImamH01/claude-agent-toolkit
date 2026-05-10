@@ -1,0 +1,24 @@
+[submodule "skills/anthropics"]
+	path = skills/anthropics
+	url = https://github.com/anthropics/skills
+[submodule "frameworks/superpowers"]
+	path = frameworks/superpowers
+	url = https://github.com/obra/superpowers
+[submodule "frameworks/context-engineering"]
+	path = frameworks/context-engineering
+	url = https://github.com/muratcankoylan/Agent-Skills-for-Context-Engineering
+[submodule "skills/design-ui/ui-ux-pro-max"]
+	path = skills/design-ui/ui-ux-pro-max
+	url = https://github.com/nextlevelbuilder/ui-ux-pro-max-skill
+[submodule "skills/vercel"]
+	path = skills/vercel
+	url = https://github.com/vercel-labs/agent-skills
+[submodule "skills/development/seo-geo-aeo"]
+	path = skills/development/seo-geo-aeo
+	url = https://github.com/SNLabat/SEO-GEO-AEO-Skill
+[submodule "mcps/chrome-devtools-mcp"]
+	path = mcps/chrome-devtools-mcp
+	url = https://github.com/ChromeDevTools/chrome-devtools-mcp
+[submodule "mcps/spline-mcp-server"]
+	path = mcps/spline-mcp-server
+	url = https://github.com/aydinfer/spline-mcp-server
