@@ -1,0 +1,22 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Generated / local
+*.bak
+*.bak.*
+.env
+.env.local
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo

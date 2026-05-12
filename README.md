@@ -5,15 +5,35 @@ A centralised repository of skills, MCP plugins, frameworks, and reusable compon
 ## Quick Install
 
 ```bash
-# Register this repo as a Claude Code plugin marketplace
-/plugin marketplace add YOUR_USERNAME/claude-skills-repo
+# 1. Clone with all submodules
+git clone --recurse-submodules https://github.com/ImamH01/claude-agent-toolkit
+
+# 2. Run the setup script
+cd claude-agent-toolkit
+bash setup.sh
+```
+
+`setup.sh` does three things:
+
+- Initialises all submodules (downloads every skill and framework)
+- Backs up your existing `~/.claude/CLAUDE.md` if one exists
+- Writes a new `~/.claude/CLAUDE.md` with the correct absolute paths for your machine
+
+Restart Claude Code after running it. All skills load automatically from that point on.
+
+**To update later:**
+
+```bash
+cd claude-agent-toolkit
+git pull --recurse-submodules
+bash setup.sh
 ```
 
 ---
 
 ## Repository Structure
 
-```
+```text
 claude-skills-repo/
 │
 ├── frameworks/
@@ -85,51 +105,31 @@ claude-skills-repo/
 
 ## Global Setup
 
-To make all skills available across every project, add the following to `~/.claude/CLAUDE.md`:
+`setup.sh` handles this automatically — it writes `~/.claude/CLAUDE.md` with the correct absolute paths for wherever you cloned the repo. No manual path editing needed.
 
-```markdown
-# Global Skills
-
-## Frameworks
-@~/claude-skills-repo/frameworks/superpowers/SKILL.md
-@~/claude-skills-repo/frameworks/context-engineering/SKILL.md
-
-## Design & UI
-@~/claude-skills-repo/skills/design-ui/frontend-design/SKILL.md
-@~/claude-skills-repo/skills/design-ui/ui-ux-pro-max/SKILL.md
-@~/claude-skills-repo/skills/design-ui/baseline-ui/SKILL.md
-@~/claude-skills-repo/skills/design-ui/fixing-accessibility/SKILL.md
-
-## Documents
-@~/claude-skills-repo/skills/documents/docx/SKILL.md
-@~/claude-skills-repo/skills/documents/xlsx/SKILL.md
-@~/claude-skills-repo/skills/documents/pdf/SKILL.md
-@~/claude-skills-repo/skills/documents/pptx/SKILL.md
-
-## Development
-@~/claude-skills-repo/skills/development/seo-geo-aeo/SKILL.md
-@~/claude-skills-repo/skills/development/webapp-testing/SKILL.md
-@~/claude-skills-repo/skills/development/mcp-builder/SKILL.md
-```
-
-> **Keep it lean.** Load heavy frameworks (Superpowers, Context Engineering) at the project level only — not globally — to avoid filling your context window.
+> **Keep it lean.** Heavy frameworks (Superpowers, Context Engineering) are commented out by default. Uncomment them in your project-level `CLAUDE.md`, not globally, to avoid filling your context window on every conversation.
 
 ---
 
 ## Per-Project Setup
 
-In your project's `CLAUDE.md` or `.claude/CLAUDE.md`, reference only what's relevant:
+Copy the commented-out `@` lines from the bottom of `~/.claude/CLAUDE.md` into your project's `CLAUDE.md`:
 
 ```markdown
-# Project Skills
+# Project Skills — uncomment what this project needs
 
-## Stack-specific
-@~/claude-skills-repo/skills/vercel/react-best-practices/SKILL.md
-@~/claude-skills-repo/skills/vercel/web-design-guidelines/SKILL.md
+# Full dev methodology (TDD, spec-first, parallel agents)
+# @/path/to/toolkit/frameworks/superpowers/skills/using-superpowers/SKILL.md
 
-## This project uses the full dev methodology
-@~/claude-skills-repo/frameworks/superpowers/SKILL.md
+# React / Next.js
+# @/path/to/toolkit/skills/vercel/skills/react-best-practices/SKILL.md
+# @/path/to/toolkit/skills/vercel/skills/web-design-guidelines/SKILL.md
+
+# React Native / Expo
+# @/path/to/toolkit/skills/vercel/skills/react-native-skills/SKILL.md
 ```
+
+After running `setup.sh`, your `~/.claude/CLAUDE.md` has these lines with the real paths already filled in — just copy and uncomment.
 
 ---
 
@@ -148,8 +148,8 @@ In your project's `CLAUDE.md` or `.claude/CLAUDE.md`, reference only what's rele
 |------|-------|--------|-------------|
 | frontend-design | 131k | [anthropics/skills](https://github.com/anthropics/skills) | Production-grade frontend, avoids AI-generic aesthetics |
 | UI UX Pro Max | 73.6k | [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | 67 styles, 161 palettes, 57 font pairings, AI design system generator |
-| baseline-ui | — | Framework built-in | UI quality and consistency audit |
-| fixing-accessibility | — | Framework built-in | WCAG violation finder and fixer |
+| baseline-ui | — | [Baseline-UI/npm-registry](https://github.com/Baseline-UI/npm-registry) | CLI-driven component library installer (similar to shadcn/ui pattern) |
+| fixing-accessibility | — | [airowe/claude-a11y-skill](https://github.com/airowe/claude-a11y-skill) | axe-core + eslint-plugin-jsx-a11y WCAG 2.1 AA audit — runtime, static, or full mode |
 | canvas-design | — | [anthropics/skills](https://github.com/anthropics/skills) | Visual art in .png and .pdf |
 | theme-factory | — | [anthropics/skills](https://github.com/anthropics/skills) | 10 pre-set professional themes |
 | algorithmic-art | — | [anthropics/skills](https://github.com/anthropics/skills) | Generative art with p5.js |
@@ -204,7 +204,7 @@ In your project's `CLAUDE.md` or `.claude/CLAUDE.md`, reference only what's rele
 | Name | Stars | Source | Description |
 |------|-------|--------|-------------|
 | Chrome DevTools MCP | 31.6k | [ChromeDevTools/chrome-devtools-mcp](https://github.com/ChromeDevTools/chrome-devtools-mcp) | Full Chrome browser control — performance, network, debugging, Lighthouse |
-| Spline MCP Server | 41 | [aydinfer/spline-mcp-server](https://github.com/aydinfer/spline-mcp-server) | Spline 3D design tool integration — objects, materials, animations, webhooks |
+| Spline MCP Server | 41 | [aydinfer/spline-mcp-server](https://github.com/aydinfer/spline-mcp-server) | ⚠️ Archived — Spline has no public REST API; the ~130 tools will fail. Included for reference only. |
 | 21st Magic (×3) | — | 21st.dev | Component builder, inspiration browser, and refiner |
 | Logo Search | — | 21st.dev | Find and integrate brand logos |
 | claude-api | — | [anthropics/skills](https://github.com/anthropics/skills) | Claude API skill for building Claude-powered apps |

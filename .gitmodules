@@ -22,3 +22,6 @@
 [submodule "mcps/spline-mcp-server"]
 	path = mcps/spline-mcp-server
 	url = https://github.com/aydinfer/spline-mcp-server
+[submodule "skills/design-ui/fixing-accessibility"]
+	path = skills/design-ui/fixing-accessibility
+	url = https://github.com/airowe/claude-a11y-skill
