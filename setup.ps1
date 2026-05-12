@@ -14,6 +14,55 @@ Write-Host "  Claude Agent Toolkit — Setup"
 Write-Host "  Repo: $RepoDir"
 Write-Host ""
 
+# ── 0. Check prerequisites ────────────────────────────────────────────────────
+Write-Host "-> Checking prerequisites..."
+$PrereqOk = $true
+
+if (-not (Get-Command git -ErrorAction SilentlyContinue)) {
+    Write-Host "   MISSING: git -- install from https://git-scm.com"
+    $PrereqOk = $false
+}
+
+$NodeCmd = Get-Command node -ErrorAction SilentlyContinue
+if (-not $NodeCmd) {
+    Write-Host "   MISSING: Node.js v20+ -- install from https://nodejs.org"
+    Write-Host "            Needed for: chrome-devtools MCP, docx skill, SEO skill"
+    $PrereqOk = $false
+} else {
+    $NodeVersion = (node -e "process.stdout.write(String(process.versions.node.split('.')[0]))") -as [int]
+    if ($NodeVersion -lt 20) {
+        Write-Host "   OUTDATED: Node.js $NodeVersion detected -- v20+ required (https://nodejs.org)"
+        $PrereqOk = $false
+    }
+}
+
+if (-not (Get-Command python3 -ErrorAction SilentlyContinue) -and -not (Get-Command python -ErrorAction SilentlyContinue)) {
+    Write-Host "   MISSING: Python 3 -- install from https://www.python.org"
+    Write-Host "            Needed for: this setup script, webapp-testing, pdf, docx skills"
+    $PrereqOk = $false
+}
+
+$ChromePaths = @(
+    "$env:LOCALAPPDATA\Google\Chrome\Application\chrome.exe",
+    "$env:PROGRAMFILES\Google\Chrome\Application\chrome.exe",
+    "$env:PROGRAMFILES(x86)\Google\Chrome\Application\chrome.exe"
+)
+$ChromeFound = $ChromePaths | Where-Object { Test-Path $_ }
+if (-not $ChromeFound) {
+    Write-Host "   MISSING: Google Chrome -- install from https://www.google.com/chrome"
+    Write-Host "            Needed for: chrome-devtools MCP"
+    Write-Host "            (Continuing anyway -- MCP may still work if Chrome is elsewhere)"
+}
+
+if (-not $PrereqOk) {
+    Write-Host ""
+    Write-Host "   Install the missing dependencies above, then re-run this script."
+    Write-Host ""
+    exit 1
+}
+Write-Host "   All required dependencies found."
+Write-Host ""
+
 # ── 1. Submodules ─────────────────────────────────────────────────────────────
 Write-Host "-> Initialising submodules..."
 git -C $RepoDir submodule update --init --recursive

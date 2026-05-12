@@ -15,6 +15,52 @@ echo "  Claude Agent Toolkit — Setup"
 echo "  Repo: $REPO_DIR"
 echo ""
 
+# ── 0. Check prerequisites ────────────────────────────────────────────────────
+echo "→ Checking prerequisites..."
+PREREQ_OK=1
+
+if ! command -v git &>/dev/null; then
+  echo "  MISSING: git — install from https://git-scm.com"
+  PREREQ_OK=0
+fi
+
+if ! command -v node &>/dev/null; then
+  echo "  MISSING: Node.js v20+ — install from https://nodejs.org"
+  echo "           Needed for: chrome-devtools MCP, docx skill, SEO skill"
+  PREREQ_OK=0
+else
+  NODE_MAJOR=$(node -e "process.stdout.write(String(process.versions.node.split('.')[0]))")
+  if [ "$NODE_MAJOR" -lt 20 ]; then
+    echo "  OUTDATED: Node.js $NODE_MAJOR detected — v20+ required (https://nodejs.org)"
+    PREREQ_OK=0
+  fi
+fi
+
+if ! command -v python3 &>/dev/null; then
+  echo "  MISSING: Python 3 — install from https://www.python.org"
+  echo "           Needed for: this setup script, webapp-testing, pdf, docx skills"
+  PREREQ_OK=0
+fi
+
+if ! command -v google-chrome &>/dev/null && \
+   ! command -v "Google Chrome" &>/dev/null && \
+   ! [ -d "/Applications/Google Chrome.app" ] && \
+   ! [ -f "/usr/bin/google-chrome" ] && \
+   ! [ -f "/usr/bin/chromium-browser" ]; then
+  echo "  MISSING: Google Chrome — install from https://www.google.com/chrome"
+  echo "           Needed for: chrome-devtools MCP"
+  echo "           (Continuing anyway — MCP may still work if Chrome is installed elsewhere)"
+fi
+
+if [ "$PREREQ_OK" -eq 0 ]; then
+  echo ""
+  echo "  Install the missing dependencies above, then re-run this script."
+  echo ""
+  exit 1
+fi
+echo "  All required dependencies found."
+echo ""
+
 # ── 1. Submodules ─────────────────────────────────────────────────────────────
 echo "→ Initialising submodules..."
 git -C "$REPO_DIR" submodule update --init --recursive

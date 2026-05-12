@@ -2,6 +2,21 @@
 
 A centralised repository of skills, MCP plugins, frameworks, and reusable components for Claude Code projects. Install globally via `~/.claude/CLAUDE.md` or reference per-project as needed.
 
+## Prerequisites
+
+Install these before running setup:
+
+| Dependency | Required for | Install |
+| --- | --- | --- |
+| **Git** | Cloning the repo and submodules | [git-scm.com](https://git-scm.com) |
+| **Node.js v20+** | chrome-devtools MCP (`npx`); docx and SEO skills install npm packages at runtime | [nodejs.org](https://nodejs.org) |
+| **Google Chrome** | chrome-devtools MCP | [google.com/chrome](https://www.google.com/chrome) |
+| **Python 3** | setup.sh uses it for JSON manipulation; webapp-testing, pdf, and docx skills run Python scripts | Pre-installed on macOS/Linux; [python.org](https://www.python.org) on Windows |
+
+> **LibreOffice note:** The `docx` and `pdf` skills use LibreOffice for format conversion. This works automatically inside Claude Code's hosted cloud environment (claude.ai/code). If you're running Claude Code locally and want PDF export from these skills, install [LibreOffice](https://www.libreoffice.org).
+
+---
+
 ## Quick Install
 
 ```bash
