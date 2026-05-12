@@ -1,89 +1,52 @@
-# Global Claude Skills
+# Claude Agent Toolkit
 
-## IMPORTANT — Claude Code Setup Instructions
+## IMPORTANT — First-Time Setup
 
-If you are Claude Code and this repository was just cloned or opened for the first time,
-you MUST run the following command immediately before doing anything else:
+If you are Claude Code and this repository was just cloned or opened for the
+first time, run this immediately before doing anything else:
 
 ```bash
 bash setup.sh
 ```
 
-This script initialises all submodules and writes `~/.claude/CLAUDE.md` with the correct
-absolute paths for this machine. Without it, all skill @imports below will fail silently.
+On Windows:
+```powershell
+.\setup.ps1
+```
+
+This script initialises all submodules and writes `~/.claude/CLAUDE.md` with
+the correct absolute paths for this machine. Without it, skills will not load.
 After running it, tell the user: "Setup complete — restart Claude Code to activate all skills."
 
-> **This file is the source template.** Run `bash setup.sh` to install it globally to `~/.claude/CLAUDE.md` with the correct paths for your machine.
-
-When a user shares this file at the start of a new project, read the ACTIVATION GUIDE
-below and recommend which commented-out skills to uncomment based on the project type,
-stack, and goals described. Then provide the updated CLAUDE.md for the project.
-
 ---
 
-## ACTIVATION GUIDE
+## What This Repo Contains
 
-### Always loaded (global)
-- design-ui/frontend-design — any UI or frontend work
-- design-ui/ui-ux-pro-max — any UI/UX design decisions
-- documents/docx, xlsx, pdf, pptx — loaded on all projects, document creation
-- development/seo-geo-aeo — any public-facing website needing search visibility
-- development/webapp-testing — any project with a frontend that needs testing
-- development/mcp-builder — when building MCP servers or integrations
-- development/skill-creator — when creating new Claude skills
-- enterprise/brand-guidelines — when brand consistency matters
-- enterprise/internal-comms — when writing internal docs, reports, or newsletters
+A curated collection of Claude Code skills, MCP plugins, and frameworks.
+Skills are loaded globally via `~/.claude/CLAUDE.md` after running setup.
 
-### Uncomment for specific project types
-- frameworks/superpowers — any serious software development project needing TDD,
-  planning, and subagent-driven development. Recommended for most coding projects.
-- frameworks/context-engineering — when building AI agents, multi-agent systems,
-  or anything that requires careful context/memory management
-- skills/vercel/react-best-practices — any React or Next.js project
-- skills/vercel/web-design-guidelines — any project with a web UI
-- skills/vercel/react-native-guidelines — React Native or Expo mobile apps
-- skills/vercel/composition-patterns — when building reusable component libraries
-- skills/vercel/vercel-deploy-claimable — when deploying to Vercel
+### Always-on skills (loaded globally after setup)
+- **frontend-design** — production-grade frontend, avoids AI-generic aesthetics
+- **ui-ux-pro-max** — 67 styles, 161 palettes, 57 font pairings
+- **baseline-ui** — BaselineUI component library installer
+- **fixing-accessibility** — axe-core + eslint-plugin-jsx-a11y WCAG 2.1 AA audit
+- **docx / xlsx / pdf / pptx** — document creation and conversion
+- **seo-geo-aeo** — search visibility audit (SEO, GEO, AEO)
+- **webapp-testing** — Playwright-based web app testing
+- **mcp-builder** — build high-quality MCP servers
+- **skill-creator** — create new skills following best practices
+- **brand-guidelines** — apply brand colours and typography
+- **internal-comms** — status reports, newsletters, FAQs
 
----
+### Project-level skills (uncomment in your project CLAUDE.md)
+Copy `~/.claude/project-claude.template.md` into your project as `CLAUDE.md`
+and uncomment the skills you need:
+- **superpowers** — TDD, spec-first, parallel subagent development
+- **context-engineering** — multi-agent patterns, memory systems
+- **react-best-practices / web-design-guidelines** — Vercel React rules
+- **react-native-skills** — React Native / Expo
+- **composition-patterns** — reusable component library patterns
+- **deploy-to-vercel** — one-command Vercel deployment
 
-## Design & UI
-
-@~/Documents/GitHub/claude-agent-toolkit/skills/anthropics/skills/frontend-design/SKILL.md
-@~/Documents/GitHub/claude-agent-toolkit/skills/design-ui/ui-ux-pro-max/.claude/skills/ui-ux-pro-max/SKILL.md
-@~/Documents/GitHub/claude-agent-toolkit/skills/design-ui/baseline-ui/SKILL.md
-@~/Documents/GitHub/claude-agent-toolkit/skills/design-ui/fixing-accessibility/skill.md
-
-## Documents
-
-@~/Documents/GitHub/claude-agent-toolkit/skills/anthropics/skills/docx/SKILL.md
-@~/Documents/GitHub/claude-agent-toolkit/skills/anthropics/skills/xlsx/SKILL.md
-@~/Documents/GitHub/claude-agent-toolkit/skills/anthropics/skills/pdf/SKILL.md
-@~/Documents/GitHub/claude-agent-toolkit/skills/anthropics/skills/pptx/SKILL.md
-
-## Development
-
-@~/Documents/GitHub/claude-agent-toolkit/skills/development/seo-geo-aeo/SKILL.md
-@~/Documents/GitHub/claude-agent-toolkit/skills/anthropics/skills/webapp-testing/SKILL.md
-@~/Documents/GitHub/claude-agent-toolkit/skills/anthropics/skills/mcp-builder/SKILL.md
-@~/Documents/GitHub/claude-agent-toolkit/skills/anthropics/skills/skill-creator/SKILL.md
-
-## Enterprise
-
-@~/Documents/GitHub/claude-agent-toolkit/skills/anthropics/skills/brand-guidelines/SKILL.md
-@~/Documents/GitHub/claude-agent-toolkit/skills/anthropics/skills/internal-comms/SKILL.md
-
----
-
-# Project-level only (uncomment in your project CLAUDE.md)
-
-# HEAVY FRAMEWORKS — uncomment for serious dev projects
-# @~/Documents/GitHub/claude-agent-toolkit/frameworks/superpowers/skills/using-superpowers/SKILL.md
-# @~/Documents/GitHub/claude-agent-toolkit/frameworks/context-engineering/SKILL.md
-
-# VERCEL / REACT — uncomment for React, Next.js, React Native projects
-# @~/Documents/GitHub/claude-agent-toolkit/skills/vercel/skills/react-best-practices/SKILL.md
-# @~/Documents/GitHub/claude-agent-toolkit/skills/vercel/skills/web-design-guidelines/SKILL.md
-# @~/Documents/GitHub/claude-agent-toolkit/skills/vercel/skills/react-native-skills/SKILL.md
-# @~/Documents/GitHub/claude-agent-toolkit/skills/vercel/skills/composition-patterns/SKILL.md
-# @~/Documents/GitHub/claude-agent-toolkit/skills/vercel/skills/deploy-to-vercel/SKILL.md
+### MCP plugins (active globally after setup)
+- **chrome-devtools** — full Chrome browser control via DevTools

@@ -28,11 +28,14 @@ cd claude-agent-toolkit
 bash setup.sh
 ```
 
-`setup.sh` does three things:
+`setup.sh` does five things:
 
+- Checks that required dependencies (Git, Node.js v20+, Python 3) are installed
 - Initialises all submodules (downloads every skill and framework)
 - Backs up your existing `~/.claude/CLAUDE.md` if one exists
 - Writes a new `~/.claude/CLAUDE.md` with the correct absolute paths for your machine
+- Registers the chrome-devtools MCP globally in `~/.claude/settings.json`
+- Writes a resolved `~/.claude/project-claude.template.md` for starting new projects
 
 Restart Claude Code after running it. All skills load automatically from that point on.
 
@@ -49,69 +52,49 @@ bash setup.sh
 ## Repository Structure
 
 ```text
-claude-skills-repo/
+claude-agent-toolkit/
 │
 ├── frameworks/
-│   ├── superpowers/                   # Full dev methodology (obra/superpowers)
-│   └── context-engineering/           # Multi-agent & context skills
+│   ├── superpowers/                   # obra/superpowers — TDD, spec-first, parallel agents
+│   └── context-engineering/           # Multi-agent patterns, memory systems
 │
 ├── skills/
+│   ├── anthropics/                    # Anthropic official skills (submodule)
+│   │   └── skills/
+│   │       ├── frontend-design/
+│   │       ├── docx/ xlsx/ pdf/ pptx/
+│   │       ├── webapp-testing/
+│   │       ├── mcp-builder/
+│   │       ├── skill-creator/
+│   │       ├── brand-guidelines/
+│   │       ├── internal-comms/
+│   │       └── ... (canvas-design, theme-factory, algorithmic-art, etc.)
+│   │
 │   ├── design-ui/
-│   │   ├── frontend-design/           # Anthropic official
-│   │   ├── ui-ux-pro-max/             # nextlevelbuilder
-│   │   ├── baseline-ui/
-│   │   ├── fixing-accessibility/
-│   │   ├── canvas-design/             # Anthropic official
-│   │   ├── theme-factory/             # Anthropic official
-│   │   └── algorithmic-art/           # Anthropic official
+│   │   ├── ui-ux-pro-max/             # nextlevelbuilder — 67 styles, 161 palettes
+│   │   ├── baseline-ui/               # BaselineUI component library skill
+│   │   └── fixing-accessibility/      # airowe — axe-core + jsx-a11y WCAG audit
 │   │
-│   ├── vercel/
-│   │   ├── react-best-practices/      # Vercel official
-│   │   ├── web-design-guidelines/     # Vercel official
-│   │   ├── react-native-guidelines/   # Vercel official
-│   │   ├── composition-patterns/      # Vercel official
-│   │   └── vercel-deploy-claimable/   # Vercel official
+│   ├── vercel/                        # Vercel official skills (submodule)
+│   │   └── skills/
+│   │       ├── react-best-practices/
+│   │       ├── web-design-guidelines/
+│   │       ├── react-native-skills/
+│   │       ├── composition-patterns/
+│   │       └── deploy-to-vercel/
 │   │
-│   ├── documents/
-│   │   ├── docx/                      # Anthropic official
-│   │   ├── xlsx/                      # Anthropic official
-│   │   ├── pdf/                       # Anthropic official
-│   │   └── pptx/                      # Anthropic official
-│   │
-│   ├── development/
-│   │   ├── seo-geo-aeo/               # SEO/GEO/AEO audit (SNLabat)
-│   │   ├── simplify/
-│   │   ├── init/
-│   │   ├── review/
-│   │   ├── security-review/
-│   │   ├── update-config/
-│   │   ├── fewer-permission-prompts/
-│   │   ├── webapp-testing/            # Anthropic official
-│   │   ├── mcp-builder/               # Anthropic official
-│   │   ├── web-artifacts-builder/     # Anthropic official
-│   │   ├── skill-creator/             # Anthropic official
-│   │   └── claude-api/                # Anthropic official
-│   │
-│   └── enterprise/
-│       ├── brand-guidelines/          # Anthropic official
-│       ├── internal-comms/            # Anthropic official
-│       ├── doc-coauthoring/           # Anthropic official
-│       └── slack-gif-creator/         # Anthropic official
+│   └── development/
+│       └── seo-geo-aeo/               # SNLabat — SEO/GEO/AEO audit
 │
 ├── mcps/
-│   ├── chrome-devtools-mcp/           # Google/ChromeDevTools
-│   ├── spline-mcp-server/             # Spline 3D
-│   └── 21st-magic/                    # Component builder/refiner/inspiration + logo search
+│   ├── chrome-devtools-mcp/           # Google/ChromeDevTools (registered globally by setup)
+│   └── spline-mcp-server/             # ⚠️ Archived — included for reference only
 │
-├── components/
-│   ├── cn-utility/                    # clsx + tailwind-merge
-│   ├── SectionHeading/                # Reusable heading component
-│   └── ButtonLink/                    # Internal/external CTA button
-│
-├── packages/
-│   └── npm.md                         # Recommended NPM packages reference
-│
-├── CLAUDE.md                          # Global skill references for ~/.claude/
+├── setup.sh                           # macOS/Linux install script
+├── setup.ps1                          # Windows install script
+├── project-claude.template.md         # Template for per-project CLAUDE.md
+├── .mcp.json                          # Project-scoped MCP config
+├── CLAUDE.md                          # Setup instructions for Claude Code
 ├── CONTRIBUTING.md
 └── README.md
 ```
