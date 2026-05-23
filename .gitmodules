@@ -25,3 +25,7 @@
 [submodule "skills/design-ui/fixing-accessibility"]
 	path = skills/design-ui/fixing-accessibility
 	url = https://github.com/airowe/claude-a11y-skill
+[submodule "skills/development/graphify"]
+	path = skills/development/graphify
+	url = https://github.com/safishamsi/graphify
+	branch = v8

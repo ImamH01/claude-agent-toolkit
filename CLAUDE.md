@@ -47,6 +47,7 @@ and uncomment the skills you need:
 - **react-native-skills** — React Native / Expo
 - **composition-patterns** — reusable component library patterns
 - **deploy-to-vercel** — one-command Vercel deployment
+- **graphify** — turn any codebase, docs, or media into a queryable knowledge graph (`/graphify`)
 
 ### MCP plugins (active globally after setup)
 - **chrome-devtools** — full Chrome browser control via DevTools

@@ -35,3 +35,9 @@
 # Uncomment to enable one-command Vercel deployment.
 #
 # @TOOLKIT/skills/vercel/skills/deploy-to-vercel/SKILL.md
+
+# ── Knowledge Graph ───────────────────────────────────────────────────────────
+# Uncomment to turn any codebase, docs, papers, or media into a queryable
+# knowledge graph. Provides /graphify command. Requires: pip install graphifyy
+#
+# @TOOLKIT/skills/development/graphify/graphify/skill.md

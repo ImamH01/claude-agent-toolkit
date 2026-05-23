@@ -118,6 +118,8 @@ stack, and goals described. Then provide the updated CLAUDE.md for the project.
 - skills/vercel/react-native-guidelines - React Native or Expo mobile apps
 - skills/vercel/composition-patterns - when building reusable component libraries
 - skills/vercel/vercel-deploy-claimable - when deploying to Vercel
+- skills/development/graphify - turn any codebase, docs, papers, or media into a
+  queryable knowledge graph. Provides /graphify command. Requires: pip install graphifyy
 
 ---
 
@@ -161,6 +163,10 @@ stack, and goals described. Then provide the updated CLAUDE.md for the project.
 # @$T/skills/vercel/skills/react-native-skills/SKILL.md
 # @$T/skills/vercel/skills/composition-patterns/SKILL.md
 # @$T/skills/vercel/skills/deploy-to-vercel/SKILL.md
+
+# KNOWLEDGE GRAPH - uncomment to enable /graphify on any project
+# Requires: pip install graphifyy
+# @$T/skills/development/graphify/graphify/skill.md
 "@
 
 Set-Content -Path $GlobalClaude -Value $ClaudeContent -Encoding UTF8
@@ -205,6 +211,7 @@ $Skills = @(
     "skills/anthropics/skills/internal-comms/SKILL.md"
     "frameworks/context-engineering/SKILL.md"
     "frameworks/superpowers/skills/using-superpowers/SKILL.md"
+    "skills/development/graphify/graphify/skill.md"
 )
 
 $Missing = 0
