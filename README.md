@@ -176,7 +176,7 @@ After running `setup.sh`, your `~/.claude/CLAUDE.md` has these lines with the re
 
 | Name | Stars | Source | Description |
 |------|-------|--------|-------------|
-| Graphify | 52k | [safishamsi/graphify](https://github.com/safishamsi/graphify) | Turn any codebase, docs, papers, images, or videos into a queryable knowledge graph. Provides `/graphify` command. Requires `pip install graphifyy` |
+| Graphify | 52k | [safishamsi/graphify](https://github.com/safishamsi/graphify) | Turn any codebase, docs, papers, images, or videos into a queryable knowledge graph. Provides `/graphify` command. Requires Python 3.10+ and `uv tool install graphifyy` (package name has double-y) |
 | SEO / GEO / AEO Audit | — | [SNLabat/SEO-GEO-AEO-Skill](https://github.com/SNLabat/SEO-GEO-AEO-Skill) | Full search visibility audit — traditional SEO, AI search (GEO), answer engines (AEO) |
 | simplify | — | Framework built-in | Code quality and reuse review |
 | init | — | Framework built-in | Generate CLAUDE.md for new codebase |
